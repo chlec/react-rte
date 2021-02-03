@@ -48,7 +48,7 @@ export default class InputPopover extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this._onDocumentClick);
+    //document.addEventListener('click', this._onDocumentClick);
     document.addEventListener('keydown', this._onDocumentKeydown);
     if (this._inputRef) {
       this._inputRef.focus();
@@ -56,7 +56,7 @@ export default class InputPopover extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this._onDocumentClick);
+    //document.removeEventListener('click', this._onDocumentClick);
     document.removeEventListener('keydown', this._onDocumentKeydown);
   }
 
@@ -140,13 +140,13 @@ export default class InputPopover extends Component {
     this.props.onSubmit(value, this.state.checkOptionValues);
   }
 
-  _onDocumentClick(event: Object) {
+  /*_onDocumentClick(event: Object) {
     let rootNode = ReactDOM.findDOMNode(this);
     if (!rootNode.contains(event.target)) {
       // Here we pass the event so the parent can manage focus.
       this.props.onCancel(event);
     }
-  }
+  }*/
 
   _onDocumentKeydown(event: Object) {
     if (event.keyCode === 27) {
