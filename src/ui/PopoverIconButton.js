@@ -14,6 +14,7 @@ type Props = {
   };
   onTogglePopover: Function,
   onSubmit: Function;
+  onFileUpload?: Function
 };
 
 export default class PopoverIconButton extends Component {
@@ -43,6 +44,7 @@ export default class PopoverIconButton extends Component {
         checkOptions={this.props.checkOptions}
         onSubmit={this._onSubmit}
         onCancel={this._hidePopover}
+        onFileUpload={this.props.onFileUpload}
       />
     );
   }

@@ -1,5 +1,5 @@
 /* @flow */
-import React, {Component} from 'react';
+import React, {Component, createRef} from 'react';
 import ReactDOM from 'react-dom';
 import IconButton from './IconButton';
 import ButtonGroup from './ButtonGroup';
@@ -20,6 +20,7 @@ type Props = {
   };
   onCancel: () => any;
   onSubmit: (value: string, checkOptionValues: CheckOptionValues) => any;
+  onFileUpload?: Function
 };
 
 type State = {
@@ -30,6 +31,7 @@ export default class InputPopover extends Component {
   props: Props;
   state: State;
   _inputRef: ?Object;
+  fileInputRef: ?Object;
 
   constructor() {
     super(...arguments);
@@ -42,6 +44,8 @@ export default class InputPopover extends Component {
         checkOptionValues[key] = defaultValue;
       }
     }
+    this.fileInputRef = createRef()
+
     this.state = {
       checkOptionValues,
     };
@@ -74,6 +78,22 @@ export default class InputPopover extends Component {
             className={styles.input}
             onKeyPress={this._onInputKeyPress}
           />
+          {
+            this.props.onFileUpload && (<React.Fragment>
+              <input
+                ref={r => (this.fileInputRef = r)}
+                accept="image/*"
+                style={{ display: 'none' }}
+                id="raised-button-file"
+                type="file"
+                onChange={this.props.onFileUpload}
+              />
+              <button onClick={() => {
+                if (this.fileInputRef && this.fileInputRef.current)
+                  this.fileInputRef.current.click()
+              }}>Upload image</button>
+            </React.Fragment>)
+          }
           <ButtonGroup className={styles.buttonGroup}>
             <IconButton
               label="Cancel"

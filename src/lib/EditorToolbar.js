@@ -33,6 +33,7 @@ type Props = {
   customControls: Array<CustomControl>;
   rootStyle?: Object;
   isOnBottom?: boolean;
+  onFileUpload?: (file: File) => void
 };
 
 type State = {
@@ -272,6 +273,7 @@ export default class EditorToolbar extends Component {
           showPopover={this.state.showImageInput}
           onTogglePopover={this._toggleShowImageInput}
           onSubmit={this._setImage}
+          onFileUpload={this.props.onFileUpload}
         />
       </ButtonGroup>
     );

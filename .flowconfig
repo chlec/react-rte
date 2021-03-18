@@ -11,3 +11,4 @@ module.system=haste
 
 suppress_type=$FlowIssue
 suppress_comment=\\(.\\|\n\\)*\\$FlowIssue
+esproposal.optional_chaining=enable
