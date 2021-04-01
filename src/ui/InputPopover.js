@@ -70,7 +70,7 @@ export default class InputPopover extends Component {
     return (
       <div className={className}>
         <div className={styles.inner}>
-          <input
+        <input
             ref={this._setInputRef}
             defaultValue={props.defaultValue}
             type="text"
@@ -78,22 +78,6 @@ export default class InputPopover extends Component {
             className={styles.input}
             onKeyPress={this._onInputKeyPress}
           />
-          {
-            this.props.onFileUpload && (<React.Fragment>
-              <input
-                ref={r => (this.fileInputRef = r)}
-                accept="image/*"
-                style={{ display: 'none' }}
-                id="raised-button-file"
-                type="file"
-                onChange={this.props.onFileUpload}
-              />
-              <button onClick={() => {
-                if (this.fileInputRef && this.fileInputRef.current)
-                  this.fileInputRef.current.click()
-              }}>Upload image</button>
-            </React.Fragment>)
-          }
           <ButtonGroup className={styles.buttonGroup}>
             <IconButton
               label="Cancel"
@@ -107,6 +91,22 @@ export default class InputPopover extends Component {
             />
           </ButtonGroup>
         </div>
+          {
+            this.props.onFileUpload && (<div className={styles.inner}>
+              <input
+                ref={r => (this.fileInputRef = r)}
+                accept="image/*"
+                style={{ display: 'none' }}
+                id="raised-button-file"
+                type="file"
+                onChange={this.props.onFileUpload}
+              />
+              <button style={{ marginTop: '10px' }} onClick={() => {
+                if (this.fileInputRef)
+                  this.fileInputRef.click()
+              }}>Upload image</button>
+            </div>)
+          }
         {this._renderCheckOptions()}
       </div>
     );
