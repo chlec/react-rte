@@ -20,7 +20,7 @@ type Props = {
   };
   onCancel: () => any;
   onSubmit: (value: string, checkOptionValues: CheckOptionValues) => any;
-  onFileUpload?: Function
+  afterUpload?: Function
 };
 
 type State = {
@@ -92,14 +92,14 @@ export default class InputPopover extends Component {
           </ButtonGroup>
         </div>
           {
-            this.props.onFileUpload && (<div className={styles.inner}>
+            this.props.afterUpload && (<div className={styles.inner}>
               <input
                 ref={r => (this.fileInputRef = r)}
                 accept="image/*"
                 style={{ display: 'none' }}
                 id="raised-button-file"
                 type="file"
-                onChange={this.props.onFileUpload}
+                onChange={this.props.afterUpload}
               />
               <button style={{ marginTop: '10px' }} onClick={() => {
                 if (this.fileInputRef)

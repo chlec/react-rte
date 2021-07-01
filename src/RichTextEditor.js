@@ -65,7 +65,7 @@ type Props = {
   editorStyle?: Object;
   toolbarStyle?: Object;
   onBlur?: (event: Object) => void;
-  onFileUpload?: (file: File) => void;
+  afterUpload?: (file: File) => void;
 };
 
 export default class RichTextEditor extends Component {
@@ -107,7 +107,7 @@ export default class RichTextEditor extends Component {
       rootStyle,
       toolbarStyle,
       editorStyle,
-      onFileUpload,
+      afterUpload,
       ...otherProps // eslint-disable-line comma-dangle
     } = this.props;
     let editorState = value.getEditorState();
@@ -135,7 +135,7 @@ export default class RichTextEditor extends Component {
           focusEditor={this._focus}
           toolbarConfig={toolbarConfig}
           customControls={customControls}
-          onFileUpload={onFileUpload}
+          afterUpload={afterUpload}
         />
       );
     }
